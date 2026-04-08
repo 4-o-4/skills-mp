@@ -1,0 +1,120 @@
+/**
+ * Global theme — warm editorial UI inspired by curated marketplace directories.
+ */
+:root {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --app-bg: #f4f1ec;
+  --app-bg-accent: radial-gradient(
+    ellipse 120% 80% at 50% -30%,
+    rgba(234, 88, 12, 0.09),
+    transparent 55%
+  );
+  --surface: #ffffff;
+  --border-subtle: rgba(20, 20, 20, 0.08);
+  --border-strong: rgba(20, 20, 20, 0.12);
+  --text-primary: #141414;
+  --text-secondary: #525252;
+  --text-muted: #737373;
+  --sidebar-bg: #0a0a0a;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-muted: #a3a3a3;
+  --sidebar-active-bg: rgba(234, 88, 12, 0.12);
+  --accent: #ea580c;
+  --accent-soft: rgba(234, 88, 12, 0.14);
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --shadow-card: 0 1px 0 rgba(20, 20, 20, 0.04), 0 12px 40px rgba(20, 20, 20, 0.06);
+  --shadow-card-hover: 0 1px 0 rgba(20, 20, 20, 0.06), 0 20px 50px rgba(20, 20, 20, 0.1);
+}
+
+/* Element Plus — primary brand */
+:root {
+  --el-color-primary: #ea580c;
+  --el-color-primary-light-3: #f97316;
+  --el-color-primary-light-5: #fb923c;
+  --el-color-primary-light-7: #fdba74;
+  --el-color-primary-light-8: #fed7aa;
+  --el-color-primary-light-9: #ffedd5;
+  --el-color-primary-dark-2: #c2410c;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--app-bg);
+  background-image: var(--app-bg-accent);
+  background-attachment: fixed;
+  color: var(--text-primary);
+}
+
+/* Cards & panels — softer, editorial */
+.el-card {
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.el-card:hover {
+  border-color: var(--border-strong) !important;
+}
+
+/* Tables */
+.el-table {
+  --el-table-border-color: var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* Inputs — slightly warmer */
+.el-input__wrapper {
+  border-radius: var(--radius-md) !important;
+}
+
+.el-select .el-input__wrapper {
+  border-radius: var(--radius-md) !important;
+}
+
+/* Dialogs */
+.el-dialog {
+  border-radius: var(--radius-xl) !important;
+  overflow: hidden;
+}
+
+/* Tabs */
+.el-tabs__item.is-active {
+  font-weight: 600;
+}
+
+/* Sidebar menu (MainLayout) */
+.layout-sidebar .el-menu {
+  border-right: none !important;
+  --el-menu-bg-color: transparent;
+  --el-menu-text-color: #a3a3a3;
+  --el-menu-hover-bg-color: rgba(255, 255, 255, 0.06);
+  --el-menu-active-color: #fafafa;
+  background-color: transparent !important;
+}
+
+.layout-sidebar .el-menu-item {
+  border-radius: var(--radius-md);
+  margin: 2px 10px;
+  height: 46px !important;
+  line-height: 46px !important;
+  color: var(--sidebar-muted) !important;
+}
+
+.layout-sidebar .el-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: #fafafa !important;
+}
+
+.layout-sidebar .el-menu-item.is-active {
+  background-color: var(--sidebar-active-bg) !important;
+  color: #fafafa !important;
+  font-weight: 600;
+}
+
+.layout-sidebar .el-menu-item .el-icon {
+  font-size: 18px;
+}
