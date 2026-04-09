@@ -21,6 +21,18 @@ export const useProjectsStore = defineStore('projects', () => {
     }
   }
 
+  async function fetchMy() {
+    loading.value = true
+    try {
+      const { data } = await projectsApi.getMy()
+      projects.value = data
+    } catch (e: any) {
+      ElMessage.error(e.response?.data?.message || 'Failed to load projects')
+    } finally {
+      loading.value = false
+    }
+  }
+
   async function create(payload: { name: string; description: string }) {
     try {
       const { data } = await projectsApi.create(payload)
@@ -61,5 +73,5 @@ export const useProjectsStore = defineStore('projects', () => {
     }
   }
 
-  return { projects, currentProject, loading, fetchAll, create, fetchById, update }
+  return { projects, currentProject, loading, fetchAll, fetchMy, create, fetchById, update }
 })

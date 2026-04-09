@@ -17,6 +17,11 @@ class ProjectController(
         return ResponseEntity.ok(projectService.getAll(ownerId))
     }
 
+    @GetMapping("/my")
+    fun getMy(principal: Principal): ResponseEntity<List<ProjectDto>> {
+        return ResponseEntity.ok(projectService.getByOwnerUsername(principal.name))
+    }
+
     @PostMapping
     fun create(@RequestBody request: CreateProjectRequest, principal: Principal): ResponseEntity<ProjectDto> {
         return ResponseEntity.ok(projectService.create(request, principal.name))

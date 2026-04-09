@@ -27,7 +27,7 @@ const filtered = computed(() => {
 })
 
 onMounted(() => {
-  store.fetchAll()
+  store.fetchMy()
 })
 
 function goToProject(id: number) {

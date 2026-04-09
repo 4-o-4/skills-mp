@@ -22,6 +22,9 @@ export const projectsApi = {
   getAll() {
     return client.get<Project[]>('/api/projects')
   },
+  getMy() {
+    return client.get<Project[]>('/api/projects/my')
+  },
   create(data: { name: string; description: string }) {
     return client.post<Project>('/api/projects', data)
   },
@@ -144,6 +147,12 @@ export const gitApi = {
   },
   sync(versionId: number) {
     return client.post(`/api/git/sync/${versionId}`)
+  }
+}
+
+export const adminApi = {
+  getUsers() {
+    return client.get<User[]>('/api/admin/users')
   }
 }
 

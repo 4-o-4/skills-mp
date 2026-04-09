@@ -68,6 +68,12 @@ class ProjectService(
         return projects.map { it.toDto() }
     }
 
+    fun getByOwnerUsername(username: String): List<ProjectDto> {
+        val owner = userRepository.findByUsername(username)
+            .orElseThrow { EntityNotFoundException("User not found") }
+        return projectRepository.findByOwnerId(owner.id).map { it.toDto() }
+    }
+
     private fun Project.toDto(): ProjectDto {
         val skillCount = skillRepository.findByProjectId(id).size
         return ProjectDto(
