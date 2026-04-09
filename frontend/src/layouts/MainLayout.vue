@@ -48,7 +48,7 @@ const roleColors: Record<string, string> = {
           <el-icon><Shop /></el-icon>
           <span>Marketplace</span>
         </el-menu-item>
-        <el-menu-item index="/admin">
+        <el-menu-item v-if="auth.isAdmin" index="/admin">
           <el-icon><Setting /></el-icon>
           <span>Admin</span>
         </el-menu-item>

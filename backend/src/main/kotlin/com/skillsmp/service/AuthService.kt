@@ -57,6 +57,10 @@ class AuthService(
             .orElseThrow { EntityNotFoundException("User not found") }
         return user.toDto()
     }
+
+    fun getAllUsers(): List<UserDto> {
+        return userRepository.findAll().map { it.toDto() }
+    }
 }
 
 fun User.toDto() = UserDto(

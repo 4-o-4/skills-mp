@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { authApi } from '@/api'
+import { adminApi } from '@/api'
 import type { User, UserRole } from '@/types'
 import { ElMessage } from 'element-plus'
 
@@ -20,8 +20,8 @@ const roleColors: Record<UserRole, string> = {
 onMounted(async () => {
   loading.value = true
   try {
-    const { data } = await authApi.getMe()
-    users.value = [data]
+    const { data } = await adminApi.getUsers()
+    users.value = data
   } catch { /* interceptor */ } finally {
     loading.value = false
   }

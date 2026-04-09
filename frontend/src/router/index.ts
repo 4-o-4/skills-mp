@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -56,19 +57,28 @@ const router = createRouter({
         {
           path: 'admin',
           name: 'Admin',
-          component: () => import('@/views/AdminView.vue')
+          component: () => import('@/views/AdminView.vue'),
+          meta: { requiresAdmin: true }
         }
       ]
     }
   ]
 })
 
-router.beforeEach((to, _from, next) => {
+router.beforeEach(async (to, _from, next) => {
   const token = localStorage.getItem('token')
   if (to.matched.some((r) => r.meta.requiresAuth) && !token) {
     next('/login')
   } else if ((to.path === '/login' || to.path === '/register') && token) {
     next('/')
+  } else if (to.matched.some((r) => r.meta.requiresAdmin)) {
+    const auth = useAuthStore()
+    if (!auth.user) await auth.fetchMe()
+    if (auth.isAdmin) {
+      next()
+    } else {
+      next('/')
+    }
   } else {
     next()
   }
